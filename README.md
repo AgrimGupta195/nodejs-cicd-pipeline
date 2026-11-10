@@ -19,6 +19,10 @@ npm test
 npm start
 ```
 
+The local server uses the `PORT` value in `.env` and defaults to `3000` when
+that file is not present. For example, set `PORT=5000` in `.env` and open
+http://localhost:5000.
+
 Or with Docker:
 
 ```bash
@@ -26,7 +30,7 @@ docker build -t nodejs-cicd-pipeline .
 docker run -p 3000:3000 nodejs-cicd-pipeline
 ```
 
-Open http://localhost:3000
+The Docker image listens on port `3000`. Open http://localhost:3000.
 
 ## Endpoints
 
@@ -40,3 +44,7 @@ Add these secrets in GitHub under **Settings → Secrets and variables → Actio
 
 - `DOCKERHUB_USERNAME`
 - `DOCKERHUB_TOKEN`
+
+The workflow runs tests for pushes and pull requests. The Docker build, Trivy
+scan, and Docker Hub push run only for pushes to `main`. View the latest run
+from the repository's **Actions** tab rather than saving a link to an older run.
